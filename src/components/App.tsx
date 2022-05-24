@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Page } from "./Page";
 import { InfiniteEpisodesPage } from "../pages/InfiniteEpisodesPage";
 import { PaginatedEpisodesPage } from "../pages/PaginatedEpisodesPage";
+import { OldFashionedEpisodesPage } from "../pages/OldFashionedEpisodesPage";
 
 const queryClient = new QueryClient({
   // global options for all queries
@@ -12,6 +13,9 @@ const queryClient = new QueryClient({
     queries: {
       // default: refetch every time window gets focussed
       refetchOnWindowFocus: true,
+      retry: 3,
+      staleTime: 1000 * 10,
+      keepPreviousData: true,
     },
   },
 });
@@ -23,6 +27,10 @@ function App() {
         <Page>
           <Routes>
             <Route path={"/"} />
+            <Route
+              path={"/oldfashioned"}
+              element={<OldFashionedEpisodesPage />}
+            />
             <Route path={"/paginated"} element={<PaginatedEpisodesPage />} />
             <Route path={"/infinite"} element={<InfiniteEpisodesPage />} />
           </Routes>

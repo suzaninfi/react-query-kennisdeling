@@ -5,6 +5,7 @@ import styled from "styled-components";
 export const Nav: React.FC = () => {
   return (
     <Navigation>
+      <Link to="/oldfashioned">Oldfashioned</Link>
       <Link to="/paginated">Paginated</Link>
       <Link to="/infinite">Infinite</Link>
     </Navigation>

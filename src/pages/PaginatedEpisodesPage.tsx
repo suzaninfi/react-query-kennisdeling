@@ -9,24 +9,22 @@ import { Colors } from "../GlobalStyle";
 export const PaginatedEpisodesPage = () => {
   const [page, setPage] = useState<number>(1);
 
-  const { isLoading, isIdle, isError, isFetching, refetch, data, error } =
-    useQuery<EpisodeResponse, Error>(
-      ["episodes", page],
-      () => fetchEpisodes(page),
-      {
-        refetchOnWindowFocus: true,
-        enabled: true,
-        retry: 3,
-        keepPreviousData: true,
-      }
+  const { isLoading, isError, isIdle, isFetching, refetch, data, error } =
+    useQuery<EpisodeResponse, Error>(["episodes", page], () =>
+      fetchEpisodes(page)
     );
 
   const displayData = () => {
-    if (isLoading || isIdle) {
+    // only the case when there is no cached data and the query is currently fetching
+    if (isLoading) {
       return <span>Loading...</span>;
     }
     if (isError) {
       return <span>An error occurred: {error.message}</span>;
+    }
+    // should not occur, because enabled is not set to false in the options
+    if (isIdle) {
+      return <></>;
     }
     return (
       <>

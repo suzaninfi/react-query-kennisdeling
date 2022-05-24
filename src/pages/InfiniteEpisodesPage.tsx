@@ -19,7 +19,7 @@ export const InfiniteEpisodesPage = () => {
     refetch,
   } = useInfiniteQuery<EpisodeResponse, Error>(
     "infinite-episodes",
-    ({ pageParam }) => fetchEpisodes(pageParam),
+    (data) => fetchEpisodes(data.pageParam),
     {
       getNextPageParam: (lastPage) => {
         const nextUrl = lastPage.info.next;
