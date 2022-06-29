@@ -28,7 +28,8 @@ const Link: React.FC<{ to: string; $fontSize?: string }> = ({
 
 const Navigation = styled.nav`
   flex-direction: row;
-  padding: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.7rem;
   margin: 1rem;
   border-top: 1px solid white;
   border-bottom: 1px solid white;

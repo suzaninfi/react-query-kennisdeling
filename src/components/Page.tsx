@@ -5,7 +5,8 @@ import { Nav } from "./Nav";
 export const Page: React.FC = ({ children }) => {
   return (
     <PageStyled>
-      <h1>React Query Project</h1>
+      <Title>React Query</Title>
+      <SubTitle>Kennisdeling</SubTitle>
       <Nav />
       {children}
     </PageStyled>
@@ -18,4 +19,12 @@ const PageStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Title = styled.h1`
+  color: #f67905;
+`;
+
+const SubTitle = styled.h2`
+  color: white;
 `;
