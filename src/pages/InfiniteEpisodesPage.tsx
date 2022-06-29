@@ -1,6 +1,6 @@
 import React from "react";
 import { useInfiniteQuery } from "react-query";
-import { EpisodeDto, EpisodeResponse } from "../api/dtos";
+import { EpisodeDto, EpisodesResponse } from "../api/dtos";
 import { fetchEpisodes } from "../api/api";
 import styled from "styled-components";
 import { EpisodeBlock } from "../components/EpisodeBlock";
@@ -17,7 +17,7 @@ export const InfiniteEpisodesPage = () => {
     isIdle,
     isError,
     refetch,
-  } = useInfiniteQuery<EpisodeResponse, Error>(
+  } = useInfiniteQuery<EpisodesResponse, Error>(
     "infinite-episodes",
     (data) => fetchEpisodes(data.pageParam),
     {

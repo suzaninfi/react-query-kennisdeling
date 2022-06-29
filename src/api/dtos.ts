@@ -18,4 +18,4 @@ export interface EpisodeDto {
   created: string;
 }
 
-export type EpisodeResponse = BaseResponse<EpisodeDto>;
+export type EpisodesResponse = BaseResponse<EpisodeDto>;

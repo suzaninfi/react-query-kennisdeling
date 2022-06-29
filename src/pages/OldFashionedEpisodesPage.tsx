@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { EpisodeDto, EpisodeResponse } from "../api/dtos";
+import { EpisodeDto, EpisodesResponse } from "../api/dtos";
 import { EpisodeBlock } from "../components/EpisodeBlock";
 import styled from "styled-components";
 import { Colors } from "../GlobalStyle";
@@ -7,7 +7,7 @@ import { fetchEpisodes } from "../api/api";
 
 export const OldFashionedEpisodesPage = () => {
   const [page, setPage] = useState<number>(1);
-  const [episodes, setEpisodes] = useState<EpisodeResponse>();
+  const [episodesResponse, setEpisodesResponse] = useState<EpisodesResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | undefined>(undefined);
 
@@ -15,7 +15,7 @@ export const OldFashionedEpisodesPage = () => {
     setIsLoading(true);
     fetchEpisodes(page)
       .then((episodes) => {
-        setEpisodes(episodes);
+        setEpisodesResponse(episodes);
       })
       .catch((error) => {
         setError(error);
@@ -29,13 +29,17 @@ export const OldFashionedEpisodesPage = () => {
   if (error) {
     return <span>An error occurred: {error.message}</span>;
   }
-  if (!episodes) {
+  if (
+    !episodesResponse ||
+    !episodesResponse.results ||
+    episodesResponse.results.length === 0
+  ) {
     return <span>Could not find episodes...</span>;
   }
   return (
     <>
       <Episodes>
-        {episodes.results.map((result: EpisodeDto) => (
+        {episodesResponse.results.map((result: EpisodeDto) => (
           <EpisodeBlock
             key={result.id}
             episodeId={result.id}
@@ -53,7 +57,7 @@ export const OldFashionedEpisodesPage = () => {
           Prev
         </button>
         <button
-          disabled={page === episodes.info.pages}
+          disabled={page === episodesResponse.info.pages}
           onClick={() => setPage((prevPage) => prevPage + 1)}
         >
           Next

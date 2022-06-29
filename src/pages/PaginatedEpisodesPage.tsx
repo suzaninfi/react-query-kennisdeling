@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { EpisodeDto, EpisodeResponse } from "../api/dtos";
+import { EpisodeDto, EpisodesResponse } from "../api/dtos";
 import { fetchEpisodes } from "../api/api";
 import { EpisodeBlock } from "../components/EpisodeBlock";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ export const PaginatedEpisodesPage = () => {
   const [page, setPage] = useState<number>(1);
 
   const { isLoading, isError, isIdle, isFetching, refetch, data, error } =
-    useQuery<EpisodeResponse, Error>(["episodes", page], () =>
+    useQuery<EpisodesResponse, Error>(["episodes", page], () =>
       fetchEpisodes(page)
     );
 
