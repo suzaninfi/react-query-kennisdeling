@@ -14,54 +14,44 @@ export const PaginatedEpisodesPage = () => {
       fetchEpisodes(page)
     );
 
-  const displayData = () => {
-    // only the case when there is no cached data and the query is currently fetching
-    if (isLoading) {
-      return <span>Loading...</span>;
-    }
-    if (isError) {
-      return <span>An error occurred: {error.message}</span>;
-    }
-    // should not occur, because enabled is not set to false in the options
-    if (isIdle) {
-      return <></>;
-    }
-    return (
-      <>
-        <Episodes>
-          {data.results.map((result: EpisodeDto) => (
-            <EpisodeBlock
-              key={result.id}
-              episodeId={result.id}
-              name={result.name}
-              airDate={result.air_date}
-            />
-          ))}
-        </Episodes>
-
-        <PaginationButtons>
-          <button
-            disabled={page === 0}
-            onClick={() => setPage((prevPage) => prevPage - 1)}
-          >
-            Prev
-          </button>
-          <button
-            disabled={page === data.info.pages}
-            onClick={() => setPage((prevPage) => prevPage + 1)}
-          >
-            Next
-          </button>
-        </PaginationButtons>
-      </>
-    );
-  };
-
+  // only the case when there is no cached data and the query is currently fetching
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+  if (isError) {
+    return <span>An error occurred: {error.message}</span>;
+  }
+  // should not occur, because enabled is not set to false in the options
+  if (isIdle) {
+    return <></>;
+  }
   return (
     <>
-      {isFetching && <div>...fetching!</div>}
-      <button onClick={() => refetch()}>Fetch</button>
-      {displayData()}
+      <Episodes>
+        {data.results.map((result: EpisodeDto) => (
+          <EpisodeBlock
+            key={result.id}
+            episodeId={result.id}
+            name={result.name}
+            airDate={result.air_date}
+          />
+        ))}
+      </Episodes>
+
+      <PaginationButtons>
+        <button
+          disabled={page === 0}
+          onClick={() => setPage((prevPage) => prevPage - 1)}
+        >
+          Prev
+        </button>
+        <button
+          disabled={page === data.info.pages}
+          onClick={() => setPage((prevPage) => prevPage + 1)}
+        >
+          Next
+        </button>
+      </PaginationButtons>
     </>
   );
 };
