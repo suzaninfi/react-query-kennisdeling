@@ -1,41 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { EpisodeDto, EpisodesResponse } from "../api/dtos";
+import React, { useState } from "react";
+import { EpisodeDto } from "../api/dtos";
 import { EpisodeBlock } from "../components/EpisodeBlock";
 import styled from "styled-components";
 import { Colors } from "../GlobalStyle";
-import { fetchEpisodes } from "../api/api";
 
 export const OldFashionedEpisodesPage = () => {
   const [page, setPage] = useState<number>(1);
-  const [episodesResponse, setEpisodesResponse] = useState<EpisodesResponse>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | undefined>(undefined);
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchEpisodes(page)
-      .then((episodes) => {
-        setEpisodesResponse(episodes);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => setIsLoading(false));
-  }, [page]);
+  const episodesResponse = {
+    info: {
+      count: 0,
+      pages: 4,
+      next: 1,
+      prev: null,
+    },
+    results: [],
+  };
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-  if (error) {
-    return <span>An error occurred: {error.message}</span>;
-  }
-  if (
-    !episodesResponse ||
-    !episodesResponse.results ||
-    episodesResponse.results.length === 0
-  ) {
-    return <span>Could not find episodes...</span>;
-  }
   return (
     <>
       <Episodes>
