@@ -31,7 +31,7 @@ export const PaginatedPage = () => {
     <>
       <PaginationButtons>
         <button
-          disabled={pageNumber === 0}
+          disabled={pageNumber === 1}
           onClick={() => setPageNumber((prevPage) => prevPage - 1)}
         >
           Prev
