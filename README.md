@@ -3,7 +3,7 @@
 Practice project to learn React Query. Shows three way to use the `useQuery` hook to fetch and cache data, by fetching
 episodes from the [Rick and Morty API](https://rickandmortyapi.com/) and displaying them.
 
-You can find the app live on https://suzaninfi.github.io/react-query-project
+You can find the app live on https://suzaninfi.github.io/react-query-kennisdeling
 
 ## Install
 
