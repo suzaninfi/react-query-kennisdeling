@@ -20,7 +20,7 @@ export const WithoutPage = () => {
   }, []);
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>An error occurred: {error.message}</p>;
   }
 
   if (loading) {

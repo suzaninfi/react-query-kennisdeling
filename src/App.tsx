@@ -2,11 +2,11 @@ import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { Page } from "./Page";
-import { InfinitePage } from "../pages/InfinitePage";
-import { PaginatedPage } from "../pages/PaginatedPage";
-import { WithoutPage } from "../pages/WithoutPage";
-import { WithPage } from "../pages/WithPage";
+import { Page } from "./components/Page";
+import { InfinitePage } from "./pages/InfinitePage";
+import { PaginatedPage } from "./pages/PaginatedPage";
+import { WithoutPage } from "./pages/WithoutPage";
+import { WithPage } from "./pages/WithPage";
 
 const queryClient = new QueryClient({
   // global options for all queries

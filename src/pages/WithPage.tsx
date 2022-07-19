@@ -12,13 +12,14 @@ export const WithPage = () => {
   );
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>An error occurred: {error.message}</p>;
   }
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
+  // should not occur, because enabled is not set to false in the options
   if (isIdle) {
     return <></>;
   }
