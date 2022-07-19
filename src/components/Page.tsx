@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Nav } from "./Nav";
+import { Link } from "react-router-dom";
 
 export const Page: React.FC = ({ children }) => {
   return (
     <PageStyled>
-      <Title>React Query</Title>
+      <Link to="/">
+        <Title>React Query</Title>
+      </Link>
       <SubTitle>Kennisdeling</SubTitle>
       <Nav />
       {children}
