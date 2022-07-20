@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { EpisodeBlock } from "../components/EpisodeBlock";
 
 export const InfinitePage = () => {
+  const initialPageParam = 1;
   const {
     data,
     error,
@@ -18,16 +19,15 @@ export const InfinitePage = () => {
     isError,
   } = useInfiniteQuery<EpisodesResponse, Error>(
     "infinite-episodes",
-    (data) => fetchEpisodes(data.pageParam),
+    (data) => fetchEpisodes(data.pageParam || initialPageParam),
     {
       getNextPageParam: (lastPage) => {
         const nextUrl = lastPage.info.next;
         if (nextUrl === null) {
           return undefined;
         }
-        return nextUrl.replace(
-          "https://rickandmortyapi.com/api/episode?page=",
-          ""
+        return parseInt(
+          nextUrl.replace("https://rickandmortyapi.com/api/episode?page=", "")
         );
       },
     }
